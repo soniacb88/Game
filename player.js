@@ -8,17 +8,17 @@ class Player {
         this.image.src = image;
 
         this.posX = 50;
-        this.posY = gameHeight * 0.80 - this.height;
-        this.posY0 = gameHeight * 0.80 - this.height;
+        this.posY = gameHeight * 1.1 - this.height;
+        this.posY0 = gameHeight * 1.1 - this.height;
         this.vy = 1;
-        this.gravity = 0.4;
+        this.gravity = 0.5;
         this.gameWidth = gameWidth;
 
         this.frames = 3;
-        this.framesIndex = 0;
-        this.setListeners()
+        this.framesIndex = 0.4
         this.keys = keys;
-        //   this.bullets = [];
+        this.bullets = [];
+        this.setListeners()
 
     }
 
@@ -35,20 +35,25 @@ class Player {
             this.height
         )
         this.animate(framesCounter)
-        // this.clearBullets()
-        // this.bullets.forEach(bullet => bullet.draw())
-
+        this.clearBullets()
+        this.bullets.forEach(bullet => bullet.draw())
+        this.animate(framesCounter)
     }
 
     move() {
-        if (this.posY <= this.posY0) {
+        if (this.posY <= this.posY0 /*&& this.posY >= 20*/ ) {
             this.posY += this.vy;
-            this.vy += this.gravity;
+            this.vy += this.gravity
+            // if (this.posY == 20) {
+            //     this.posY += this.gravity;
+            // }
+            // this.posY += this.vy;
+            // this.vy += this.gravity;
         } else {
             this.vy = 1;
             this.posY = this.posY0;
         }
-        // this.bullets.forEach(bullet => bullet.move())
+        this.bullets.forEach(bullet => bullet.move())
     }
 
     animate(framesCounter) {
@@ -62,15 +67,23 @@ class Player {
         document.addEventListener('keydown', (e) => {
             switch (e.keyCode) {
                 case this.keys.TOP_KEY:
-                    if (this.posY >= this.posY0) {
-                        this.posY -= this.vy;
-                        this.vy -= 10;
-                    }
+                    this.posY -= this.vy;
+                    this.vy -= 15;
                     break;
+
+
                 case this.keys.SPACE:
                     this.shoot()
             }
         })
+    }
+
+    shoot() {
+        this.bullets.push(new Bullet(this.ctx, 7, this.posX, this.posY, this.width, this.height, this.posY0))
+    }
+
+    clearBullets() {
+        this.bullets = this.bullets.filter(bullet => bullet.posX <= this.gameWidth)
     }
 
 }
