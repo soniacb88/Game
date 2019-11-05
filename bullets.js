@@ -1,36 +1,22 @@
 class Bullet {
-    constructor(ctx, radius, playerX, playerY, playerWidth, playerHeight, floor) {
+    constructor(ctx, playerX, playerY) {
         this.ctx = ctx;
-        this.radius = radius;
+        // this.width = 20;
+        // this.height = 20;
 
-        this.posX = playerX + playerWidth;
-        this.posY = playerY + playerHeight / 2;
-        this.playerHeight = playerHeight;
-        this.floor = floor;
+        this.image = new Image();
+        this.image.src = "./images/output-onlinejpgtools (1).png";
 
+        this.posX = playerX
+        this.posY = playerY
 
-        this.vx = 10;
-        this.vy = 0.5;
-        this.gravity = 0.00002;
-        // this.image = new Image()
-        // this.image.src = "./images/kisspng-harpoon-fishing-fishing-for-the-fork-5a87e25d6c56c3.0099960515188547494438.jpg"
+        this.vy = 8;
     }
 
     draw() {
-        //this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
-        this.ctx.beginPath();
-        this.ctx.fillStyle = 'yellow'
-        this.ctx.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2)
-        this.ctx.fill()
-        this.ctx.closePath();
+        this.ctx.drawImage(this.image, this.posX, this.posY, 100, 100);
     }
-
     move() {
-        this.posX += this.vx;
-        this.posY += this.vy;
-        this.vy += this.gravity;
-
-        if (this.posY >= this.floor + this.playerHeight) this.vy *= -1
+        this.posX += this.vy;
     }
-
 }

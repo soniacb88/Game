@@ -7,13 +7,12 @@ class Player {
         this.image = new Image();
         this.image.src = image;
 
-        this.posX = 50;
+        this.posX = 10;
         this.posY = gameHeight * 1.1 - this.height;
         this.posY0 = gameHeight * 1.1 - this.height;
         this.vy = 1;
         this.gravity = 0.5;
         this.gameWidth = gameWidth;
-
         this.frames = 3;
         this.framesIndex = 0.4
         this.keys = keys;
@@ -44,11 +43,13 @@ class Player {
         if (this.posY <= this.posY0 /*&& this.posY >= 20*/ ) {
             this.posY += this.vy;
             this.vy += this.gravity
+
             // if (this.posY == 20) {
             //     this.posY += this.gravity;
             // }
             // this.posY += this.vy;
             // this.vy += this.gravity;
+
         } else {
             this.vy = 1;
             this.posY = this.posY0;
@@ -79,11 +80,11 @@ class Player {
     }
 
     shoot() {
-        this.bullets.push(new Bullet(this.ctx, 10, this.posX, this.posY, this.width, this.height, this.posY0))
+        this.bullets.push(new Bullet(this.ctx, this.posX, this.posY))
     }
 
     clearBullets() {
-        this.bullets = this.bullets.filter(bullet => bullet.posX <= this.gameWidth)
+        this.bullets = this.bullets.filter(bullet => bullet.posY <= this.gameWidth)
     }
 
 }
