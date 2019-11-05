@@ -42,10 +42,13 @@ const Game = {
 
             }
 
-            //   if(this.framesCounter % 100 === 0) this.score++;
-            if (this.isCollision()) {
-                this.gameOver()
-            }
+            // if (this.framesCounter % 100 === 0) this.score++;
+            // if (this.isCollision()) {
+            //     // this.gameOver()
+            //     console.log("hola")
+            // }
+            this.isCollision()
+
 
         }, 1000 / this.fps)
     },
@@ -93,7 +96,16 @@ const Game = {
     isCollision: function () {
         // colisiones genéricas
         // (p.x + p.w > o.x && o.x + o.w > p.x && p.y + p.h > o.y && o.y + o.h > p.y )
-        return this.bullets.some(bullet => (bullet.posX + bullet.width > this.obstacle.posX && this.obstacle.posX + this.obstacle.width > bullet.posX && bullet.posY + bullet.height > this.obstacle.posY && this.obstacle.posY + this.obstacle.height > bullet.posY))
+        // console.log(this.obstacles[0].posX);
+
+        // this.bullets.some(bullet => (bullet.posX + bullet.width > this.obstacle.posX && this.obstacle.posX + this.obstacle.width > bullet.posX && bullet.posY + bullet.height > this.obstacle.posY && this.obstacle.posY + this.obstacle.height > bullet.posY))
+        // this.obstacles.forEach(obstacle => this.bullets.some(bullet => (bullet.posX + bullet.width > obstacle.posX && obstacle.posX + obstacle.width > bullet.posX && bullet.posY + bullet.height > obstacle.posY && obstacle.posY + obstacle.height > bullet.posY)))
+
+        this.player.bullets.forEach((bullet) => this.obstacles.forEach((obstacle) => {
+            if (bullet.posX > obstacle.posX && bullet.posY > obstacle.posY) {
+                this.gameOver()
+            }
+        }))
     },
 
 

@@ -84,7 +84,8 @@ class Player {
     }
 
     clearBullets() {
-        this.bullets = this.bullets.filter(bullet => bullet.posY <= this.gameWidth)
+
+        this.bullets = this.bullets.filter(bullet => bullet.posX <= this.gameWidth)
     }
 
 }
