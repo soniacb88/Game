@@ -79,9 +79,16 @@ const Game = {
     },
 
     generateObstacles: function () {
-        this.obstacles.push(new Obstacle(this.ctx, 200, 200, this.width, Math.floor(Math.random() * (1000 - 200) + 200)))
+        this.obstacles.push(new Obstacle(this.ctx, 200, 200, this.width, Math.floor(Math.random() * (800 - 200) + 200)))
 
     },
+
+    // isCollision: function() {
+    //     // colisiones genéricas
+    //     // (p.x + p.w > o.x && o.x + o.w > p.x && p.y + p.h > o.y && o.y + o.h > p.y )
+    //     return this.obstacles.some(obs => (this.bullets.posX + this.bullets.width > obs.posX && obs.posX + obs.width > this.bullets.posX && this.bullets.posY + this.bullets.height > obs.posY && obs.posY + obs.height > this.bullets.posY ))
+    //   },
+
 
     clearObstacles: function () {
         this.obstacles = this.obstacles.filter(obstacle => (obstacle.posX >= 0))

@@ -9,20 +9,20 @@ class Bullet {
         this.floor = floor;
 
 
-        this.vx = 5;
+        this.vx = 10;
         this.vy = 0.5;
-        this.gravity = 0.002;
-        this.image = new Image()
-        this.image.src = "./images/kisspng-harpoon-fishing-fishing-for-the-fork-5a87e25d6c56c3.0099960515188547494438.jpg"
+        this.gravity = 0.00002;
+        // this.image = new Image()
+        // this.image.src = "./images/kisspng-harpoon-fishing-fishing-for-the-fork-5a87e25d6c56c3.0099960515188547494438.jpg"
     }
 
     draw() {
-        this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
-        // this.ctx.beginPath();
-        // this.ctx.fillStyle = 'green'
-        // this.ctx.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2)
-        // this.ctx.fill()
-        // this.ctx.closePath();
+        //this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
+        this.ctx.beginPath();
+        this.ctx.fillStyle = 'yellow'
+        this.ctx.arc(this.posX, this.posY, this.radius, 0, Math.PI * 2)
+        this.ctx.fill()
+        this.ctx.closePath();
     }
 
     move() {

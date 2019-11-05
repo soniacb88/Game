@@ -79,7 +79,7 @@ class Player {
     }
 
     shoot() {
-        this.bullets.push(new Bullet(this.ctx, 7, this.posX, this.posY, this.width, this.height, this.posY0))
+        this.bullets.push(new Bullet(this.ctx, 10, this.posX, this.posY, this.width, this.height, this.posY0))
     }
 
     clearBullets() {
