@@ -10,7 +10,7 @@ const Game = {
         SPACE: 32
     },
     score: 0,
-    //life: 3,
+    life: 1,
 
     init: function () {
         this.canvas = document.getElementById('canvas');
@@ -52,6 +52,7 @@ const Game = {
         this.obstacles = [];
         this.bullets = [];
         Score.init(this.ctx, this.score)
+        Life.init(this.ctx, this.life)
     },
 
     clear: function () {
@@ -65,7 +66,7 @@ const Game = {
             obstacle.draw()
         });
         Score.draw(this.score)
-        // Life.draw(this.Life)
+        Life.draw(this.life)
     },
 
     moveAll: function () {
@@ -91,11 +92,10 @@ const Game = {
         this.player.bullets.forEach((bullet) => this.obstacles.forEach((obstacle) => {
             if (bullet.posX > obstacle.posX && bullet.posY > obstacle.posY) {
 
-                var index = this.obstacles.indexOf(obstacle);
+                let index = this.obstacles.indexOf(obstacle);
                 if (index > -1) {
                     this.obstacles.splice(index, 1);
                 }
-                //  this.gameOver()
                 this.score++
             }
         }))
@@ -103,10 +103,11 @@ const Game = {
 
     isCollisionDiver: function () {
         this.obstacles.forEach((obstacle) => {
-            if (this.player.posX > obstacle.posX && this.player.posY < obstacle.posY + 20) {
-                console.log(obstacle.width, obstacle.height)
-                console.log('vida -')
-                //this.lifes.lifes --
+            if (this.player.posX > obstacle.posX && this.player.posY < obstacle.posY) {
+                this.lifes--
+                if (this.life < 0) {
+                    this.gameOver()
+                }
             }
         })
     },
