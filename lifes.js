@@ -9,7 +9,7 @@ const Life = {
 
     draw: function (life) {
         this.ctx.fillStyle = 'white';
-        this.ctx.font = '30px sans-serif';
+        this.ctx.font = '25px sans-serif';
         this.ctx.fillText("Life: " + life, 50, 80);
     }
 }

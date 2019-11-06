@@ -10,7 +10,7 @@ const Game = {
         SPACE: 32
     },
     score: 0,
-    life: 1,
+    life: 3,
 
     init: function () {
         this.canvas = document.getElementById('canvas');
@@ -48,7 +48,7 @@ const Game = {
 
     reset: function () {
         this.background = new Background(this.ctx, this.width, this.height);
-        this.player = new Player(this.ctx, 150, 250, './images/3divers.png', this.width, this.height, this.playerKeys);
+        this.player = new Player(this.ctx, 200, 300, './images/player-swiming.png', this.width, this.height, this.playerKeys);
         this.obstacles = [];
         this.bullets = [];
         Score.init(this.ctx, this.score)
@@ -103,8 +103,16 @@ const Game = {
 
     isCollisionDiver: function () {
         this.obstacles.forEach((obstacle) => {
-            if (this.player.posX > obstacle.posX && this.player.posY < obstacle.posY) {
-                this.lifes--
+            if (this.player.posX + this.player.width >= obstacle.posX &&
+                this.player.posX <= obstacle.posX + obstacle.width &&
+                this.player.posY + this.player.height >= obstacle.posY &&
+                this.player.posY <= obstacle.posY + obstacle.height) {
+                this.life--
+
+                let index = this.obstacles.indexOf(obstacle);
+                if (index > -1) {
+                    this.obstacles.splice(index, 1)
+                }
                 if (this.life < 0) {
                     this.gameOver()
                 }
