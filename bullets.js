@@ -14,7 +14,7 @@ class Bullet {
     }
 
     draw() {
-        this.ctx.drawImage(this.image, this.posX, this.posY, 100, 100);
+        this.ctx.drawImage(this.image, this.posX, this.posY, 90, 90);
     }
     move() {
         this.posX += this.vy;

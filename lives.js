@@ -1,15 +1,15 @@
-// const Score = {
+// const Life = {
 //     ctx: undefined,
-//     score: 5,
+//     life: undefined,
 
-//     init: function (ctx, score) {
+//     init: function (ctx, life) {
 //         this.ctx = ctx;
-//         this.score = score;
+//         this.life = life;
 //     },
 
-//     draw: function (score) {
-//         this.ctx.fillStyle = 'white'
-//         this.ctx.font = '50px sans-serif'
-//         this.ctx.fillText(score, 70, 70)
+//     draw: function (life) {
+//         this.ctx.fillStyle = 'white';
+//         this.ctx.font = '30px sans-serif';
+//         this.ctx.fillText("Lifes: " + life, 50, 50);
 //     }
 // }

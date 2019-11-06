@@ -8,11 +8,9 @@ const Game = {
     playerKeys: {
         TOP_KEY: 38,
         SPACE: 32
-    }
-
-    ,
+    },
     score: 0,
-    //lives: 5,
+    //life: 3,
 
     init: function () {
         this.canvas = document.getElementById('canvas');
@@ -42,13 +40,8 @@ const Game = {
 
             }
 
-            // if (this.framesCounter % 100 === 0) this.score++;
-            // if (this.isCollision()) {
-            //     // this.gameOver()
-            //     console.log("hola")
-            // }
             this.isCollision()
-
+            this.isCollisionDiver()
 
         }, 1000 / this.fps)
     },
@@ -72,6 +65,7 @@ const Game = {
             obstacle.draw()
         });
         Score.draw(this.score)
+        // Life.draw(this.Life)
     },
 
     moveAll: function () {
@@ -86,7 +80,7 @@ const Game = {
     },
 
     generateObstacles: function () {
-        this.obstacles.push(new Obstacle(this.ctx, 150, 150, this.width, Math.floor(Math.random() * (800 - 200) + 200)))
+        this.obstacles.push(new Obstacle(this.ctx, 150, 150, this.width, Math.floor(Math.random() * (750 - 100) + 100)))
 
     },
     gameOver: function () {
@@ -94,22 +88,31 @@ const Game = {
     },
 
     isCollision: function () {
-        // colisiones genéricas
-        // (p.x + p.w > o.x && o.x + o.w > p.x && p.y + p.h > o.y && o.y + o.h > p.y )
-        // console.log(this.obstacles[0].posX);
-
-        // this.bullets.some(bullet => (bullet.posX + bullet.width > this.obstacle.posX && this.obstacle.posX + this.obstacle.width > bullet.posX && bullet.posY + bullet.height > this.obstacle.posY && this.obstacle.posY + this.obstacle.height > bullet.posY))
-        // this.obstacles.forEach(obstacle => this.bullets.some(bullet => (bullet.posX + bullet.width > obstacle.posX && obstacle.posX + obstacle.width > bullet.posX && bullet.posY + bullet.height > obstacle.posY && obstacle.posY + obstacle.height > bullet.posY)))
-
         this.player.bullets.forEach((bullet) => this.obstacles.forEach((obstacle) => {
             if (bullet.posX > obstacle.posX && bullet.posY > obstacle.posY) {
-                this.gameOver()
+
+                var index = this.obstacles.indexOf(obstacle);
+                if (index > -1) {
+                    this.obstacles.splice(index, 1);
+                }
+                //  this.gameOver()
+                this.score++
             }
         }))
     },
 
+    isCollisionDiver: function () {
+        this.obstacles.forEach((obstacle) => {
+            if (this.player.posX > obstacle.posX && this.player.posY < obstacle.posY + 20) {
+                console.log(obstacle.width, obstacle.height)
+                console.log('vida -')
+                //this.lifes.lifes --
+            }
+        })
+    },
+
 
     clearObstacles: function () {
-        this.obstacles = this.obstacles.filter(obstacle => (obstacle.posX >= 0))
+        this.obstacles = this.obstacles.filter(obstacle => (obstacle.posX >= -130))
     }
 }

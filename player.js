@@ -11,7 +11,7 @@ class Player {
         this.posY = gameHeight * 1.1 - this.height;
         this.posY0 = gameHeight * 1.1 - this.height;
         this.vy = 1;
-        this.gravity = 0.5;
+        this.gravity = 0.3;
         this.gameWidth = gameWidth;
         this.frames = 3;
         this.framesIndex = 0.4
