@@ -17,8 +17,9 @@ const Game = {
 
     init: function () {
         let juego = document.getElementById("juego")
-        console.log(juego)
         juego.classList.toggle("unvisible")
+        let canvas = document.getElementById("canvas")
+        canvas.classList.toggle("unvisible")
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.width = window.innerWidth;
@@ -134,9 +135,13 @@ const Game = {
     },
 
     gameOver: function () {
-        clearInterval(this.interval)
         let gameover = document.getElementById("gameover")
         gameover.classList.toggle('unvisible')
+        let canvas = document.getElementById("canvas")
+        canvas.classList.toggle("unvisible")
+        clearInterval(this.interval)
+
+        this.clear()
     },
 
     isCollision: function () {
@@ -189,5 +194,11 @@ const Game = {
     clearFish2: function () {
         this.fish2 = this.fish2.filter(fish2 => (fish2.posX >= -130))
     },
+
+    audio: function () {
+        this.audio = new Audio()
+        this.audio.play();
+        this.audio.pause();
+    }
 
 }

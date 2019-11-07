@@ -8,7 +8,8 @@ class Fish2 {
         this.posY = gameHeight * 1.1 - this.height;
         this.vx = 3;
         this.image = new Image()
-        this.image.src = "./images/peces.png"
+        this.image.src = "./images/pez.png"
+        // "./images/peces.png"
     }
 
     draw() {
