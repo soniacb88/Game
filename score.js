@@ -12,4 +12,5 @@ const Score = {
         this.ctx.font = '25px sans-serif'
         this.ctx.fillText("SCORE: " + score, 50, 50);
     }
+
 }

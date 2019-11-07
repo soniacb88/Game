@@ -12,4 +12,5 @@ const Life = {
         this.ctx.font = '25px sans-serif';
         this.ctx.fillText("LIFE: " + life, 50, 80);
     }
+
 }

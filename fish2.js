@@ -15,8 +15,8 @@ class Fish2 {
         this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
     }
 
-
     move() {
         this.posX -= 2;
     }
+
 }

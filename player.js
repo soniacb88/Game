@@ -9,17 +9,17 @@ class Player {
 
         this.posX = 0;
         this.posY = gameHeight * 1.1;
-        // -this.height;
         this.posY0 = gameHeight * 1.1 - this.height;
+        this.posX0 = gameWidth - this.width;
         this.vy = 0.2;
-        this.gravity = 0.5;
+        this.vx = 0;
+        this.gravity = 0.1;
         this.gameWidth = gameWidth;
         this.frames = 3;
         this.framesIndex = 0.4
         this.keys = keys;
         this.bullets = [];
         this.setListeners()
-
     }
 
     draw(framesCounter) {
@@ -41,6 +41,13 @@ class Player {
     }
 
     move() {
+        console.log(this.posX)
+        if (this.posX >= this.posX0) {
+            this.posX = this.posX0
+        }
+        if (this.posX <= -20) {
+            this.posX = -20
+        }
         if (this.posY <= this.posY0) {
             if (this.posY <= 0) {
                 this.vy = this.gravity;
@@ -54,6 +61,7 @@ class Player {
             this.vy = 1;
             this.posY = this.posY0;
         }
+        this.posX += this.vx
         this.bullets.forEach(bullet => bullet.move())
     }
 
@@ -69,12 +77,19 @@ class Player {
             switch (e.keyCode) {
                 case this.keys.TOP_KEY:
                     this.posY -= this.vy;
-                    this.vy -= 15;
+                    this.vy -= 3;
                     break;
 
 
                 case this.keys.SPACE:
-                    this.shoot()
+                    this.shoot();
+                    break;
+
+                case this.keys.RIGHT_KEY:
+                    this.vx += 0.9;
+                    break;
+                case this.keys.LEFT_KEY:
+                    this.vx -= 0.9
             }
         })
     }

@@ -3,14 +3,11 @@ class Background {
         this.ctx = ctx;
         this.width = width;
         this.height = height;
-
         this.image = new Image();
         this.image.src = "./images/background.png";
         // this.image.src = "./images/midground.png";
-
         this.posX = 0;
         this.posY = 0;
-
         this.vx = 2;
     }
 
@@ -24,4 +21,5 @@ class Background {
 
         if (this.posX <= -this.width) this.posX = 0;
     }
+
 }

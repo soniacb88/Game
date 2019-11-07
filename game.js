@@ -7,7 +7,9 @@ const Game = {
     framesCounter: 0,
     playerKeys: {
         TOP_KEY: 38,
-        SPACE: 32
+        SPACE: 32,
+        RIGHT_KEY: 39,
+        LEFT_KEY: 37
     },
     score: 0,
     life: 3,
@@ -36,6 +38,12 @@ const Game = {
             this.clear();
             this.drawAll();
             this.moveAll();
+            if (this.player.vx > 0) {
+                this.player.vx -= 0.02
+            }
+            if (this.player.vx < 0) {
+                this.player.vx += 0.02
+            }
 
             if (this.framesCounter % 70 == 0) {
                 this.generateFish()
@@ -66,7 +74,6 @@ const Game = {
         this.background = new Background(this.ctx, this.width, this.height);
         this.background2 = new Background2(this.ctx, this.width, this.height);
         this.player = new Player(this.ctx, 300, 300, './images/player-swiming.png', this.width, this.height, this.playerKeys);
-        console.log(this.player.posY0)
         this.obstacles = [];
         this.bullets = [];
         this.fish = [];
@@ -82,16 +89,16 @@ const Game = {
     drawAll: function () {
 
         this.background.draw();
-        this.background2.draw();
-        this.player.draw(this.framesCounter);
-        this.obstacles.forEach(obstacle => {
-            obstacle.draw()
-        });
         this.fish.forEach(fish => {
             fish.draw()
         });
         this.fish2.forEach(fish2 => {
             fish2.draw()
+        });
+        this.background2.draw();
+        this.player.draw(this.framesCounter);
+        this.obstacles.forEach(obstacle => {
+            obstacle.draw()
         });
 
         Score.draw(this.score)
@@ -100,18 +107,17 @@ const Game = {
 
     moveAll: function () {
         this.background.move()
-        this.background2.move()
-        this.player.move()
-        this.obstacles.forEach(obstacle => {
-            obstacle.move()
-        })
         this.fish.forEach(fish => {
             fish.move()
         })
         this.fish2.forEach(fish2 => {
             fish2.move()
         })
-
+        this.background2.move()
+        this.player.move()
+        this.obstacles.forEach(obstacle => {
+            obstacle.move()
+        })
     },
 
     generateObstacles: function () {
@@ -171,7 +177,6 @@ const Game = {
             }
         })
     },
-
 
     clearObstacles: function () {
         this.obstacles = this.obstacles.filter(obstacle => (obstacle.posX >= -130))

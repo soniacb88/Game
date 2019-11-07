@@ -9,7 +9,6 @@ class Background2 {
 
         this.posX = 0;
         this.posY = 0;
-
         this.vx = -1;
     }
 
@@ -23,4 +22,5 @@ class Background2 {
 
         if (this.posX >= -this.width) this.posX = 0;
     }
+
 }
