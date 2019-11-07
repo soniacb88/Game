@@ -1,15 +1,14 @@
-class Obstacle {
+class Fish2 {
     constructor(ctx, width, height, gameWidth, gameHeight) {
         this.ctx = ctx;
         this.width = width;
         this.height = height;
 
         this.posX = gameWidth;
-        this.posY = gameHeight - this.height;
+        this.posY = gameHeight * 1.1 - this.height;
         this.vx = 3;
         this.image = new Image()
-        this.image.src = "./images/output-onlinejpgtools (1) copia.png"
-
+        this.image.src = "./images/peces.png"
     }
 
     draw() {
@@ -18,7 +17,6 @@ class Obstacle {
 
 
     move() {
-        this.posX -= this.vx;
+        this.posX -= 2;
     }
-
 }

@@ -1,14 +1,14 @@
-class Obstacle {
+class Fish {
     constructor(ctx, width, height, gameWidth, gameHeight) {
         this.ctx = ctx;
         this.width = width;
         this.height = height;
 
         this.posX = gameWidth;
-        this.posY = gameHeight - this.height;
-        this.vx = 3;
+        this.posY = gameHeight * 1.1 - this.height;
+        this.vx = 1;
         this.image = new Image()
-        this.image.src = "./images/output-onlinejpgtools (1) copia.png"
+        this.image.src = "./images/peces2.png"
 
     }
 

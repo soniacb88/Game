@@ -5,10 +5,10 @@ class Bullet {
         // this.height = 20;
 
         this.image = new Image();
-        this.image.src = "./images/output-onlinejpgtools (1).png";
-
-        this.posX = playerX
-        this.posY = playerY
+        this.image.src = "./images/harpontrans.png";
+        //this.image.src = "./images/bala.png";
+        this.posX = playerX + 50
+        this.posY = playerY + 90
 
         this.vy = 8;
     }
