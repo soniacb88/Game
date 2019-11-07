@@ -14,6 +14,9 @@ const Game = {
     score: 0,
     life: 3,
     status: 1,
+    audio1: new Audio(),
+    audio2: new Audio(),
+    audio3: new Audio(),
 
     init: function () {
         let juego = document.getElementById("juego")
@@ -27,8 +30,27 @@ const Game = {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
 
-
         this.start();
+
+    },
+
+    sound: function () {
+        if (this.status == 1) {
+            this.audio1.src = "./sound game/Jaws - Main Title Theme 8-Bit (mp3cut.net).mp3"
+            this.audio1.play()
+        }
+        if (this.status == 2) {
+            this.audio1.pause()
+            this.audio1.currentTime = 0;
+            this.audio2.src = "./sound game/watery_cave.mp3"
+            this.audio2.play()
+        }
+        if (this.status == 3) {
+            this.audio2.pause()
+            this.audio2.currentTime = 0;
+            this.audio3.src = "./sound game/Game Over Jaws (mp3cut.net).mp3"
+            this.audio3.play()
+        }
     },
 
     start: function () {
@@ -58,7 +80,7 @@ const Game = {
             this.clearObstacles()
             this.clearFish()
             this.clearFish2()
-            if (this.framesCounter % 200 == 0) {
+            if (this.framesCounter % 100 == 0) {
 
                 this.generateObstacles()
 
@@ -135,12 +157,13 @@ const Game = {
     },
 
     gameOver: function () {
+        this.status = 3
+        this.sound()
         let gameover = document.getElementById("gameover")
         gameover.classList.toggle('unvisible')
         let canvas = document.getElementById("canvas")
         canvas.classList.toggle("unvisible")
         clearInterval(this.interval)
-
         this.clear()
     },
 
@@ -177,7 +200,6 @@ const Game = {
                 }
                 if (this.life < 0) {
                     this.gameOver()
-                    this.status = 2
                 }
             }
         })
@@ -194,11 +216,4 @@ const Game = {
     clearFish2: function () {
         this.fish2 = this.fish2.filter(fish2 => (fish2.posX >= -130))
     },
-
-    audio: function () {
-        this.audio = new Audio()
-        this.audio.play();
-        this.audio.pause();
-    }
-
 }

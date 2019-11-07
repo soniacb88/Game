@@ -1,6 +1,11 @@
 window.onload = function () {
+    document.getElementById("juego").onclick = function () {
+        Game.sound()
+    }
+
     document.getElementById("start-button").onclick = function () {
-        console.log("hola")
+        Game.status = 2
+        Game.sound()
         Game.init()
         //     let canvas = document.getElementById("canvas");
         //     startGame(canvas);

@@ -9,8 +9,9 @@ class Fish {
         this.vx = 1;
         this.image = new Image()
         this.image.src = "./images/peces2.png"
-
+        //"./images/peces.png"
     }
+
 
     draw() {
         this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);

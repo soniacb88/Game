@@ -16,6 +16,7 @@ class Player {
         this.gravity = 0.1;
         this.gameWidth = gameWidth;
         this.frames = 3;
+
         this.framesIndex = 0.4
         this.keys = keys;
         this.bullets = [];
@@ -41,7 +42,6 @@ class Player {
     }
 
     move() {
-        console.log(this.posX)
         if (this.posX >= this.posX0) {
             this.posX = this.posX0
         }
